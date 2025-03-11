@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>⚔ CHARACTER PARCHMENT ⚔</title>
+    <style>
+        /* THE MASTER SMITH'S METAL & FIRE PALETTE */
+        body {
+            background-color: #2C1901; /* FORGE SMOKE */
+            color: #8B4513; /* BURNISHED COPPER */
+            font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-image: url("data:image/gif;base64,R0lGODlhBgAGAKECAAAAAP//AAD/AP///yH5BAEKAAIALAAAAAAGAAYAAAIKhI+py+0Po5xUFQA7");
+            /* A SIMPLE TEXTURE HAMMERED INTO THE BACKGROUND */
+        }
+        
+        /* THE PARCHMENT - BEATEN THIN BUT STRONG */
+        #wrapper {
+            width: 400px;
+            margin: 50px auto;
+            border: 4px double #A0522D; /* TEMPERED BRONZE EDGES */
+            background-color: #F5DEB3; /* WEATHERED PARCHMENT */
+            position: relative;
+            box-shadow: 0 0 15px #5C2C03, 0 0 30px #5C2C03; /* FORGE GLOW */
+        }
+        
+        /* HEADER PLATE - HAMMERED TO PERFECTION */
+        #header {
+            text-align: center;
+            border-bottom: 2px solid #A0522D;
+            padding: 5px;
+            background-color: #CD853F; /* AGED BRASS */
+            position: relative;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 2px #000000;
+            color: #5C2C03; /* FORGE DARKENED STEEL */
+        }
+        
+        /* THE SCROLLING HERALD - SINGING THE CHARACTER'S DEEDS */
+        marquee {
+            color: #8B4513;
+            font-weight: bold;
+            margin: 3px 0;
+            background-color: #F5DEB3;
+            border-top: 1px solid #A0522D;
+            border-bottom: 1px solid #A0522D;
+            font-size: 10px;
+        }
+        
+        /* THE STURDY TABLE - LOAD-BEARING STRUCTURE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        /* THE FORGED CELLS - EACH BEARING ITS LOAD */
+        td {
+            padding: 5px;
+            vertical-align: top;
+            border: 1px solid #CD853F;
+        }
+        
+        /* LEFT COLUMN - HARD AS IRON */
+        .left-column {
+            width: 40%;
+            border-right: 2px solid #A0522D;
+            background-color: rgba(222, 184, 135, 0.3);
+        }
+        
+        /* RIGHT COLUMN - FLEXIBLE AS FOLDED STEEL */
+        .right-column {
+            width: 60%;
+            background-color: rgba(245, 222, 179, 0.3);
+        }
+        
+        /* THE VIEWPORT - A WINDOW TO THE SCROLLS */
+        .scrollbox {
+            max-height: 150px;
+            overflow-y: auto;
+            padding-right: 5px;
+            border: 1px inset #CD853F;
+            background-color: rgba(245, 222, 179, 0.5);
+            
+            /* THE SCROLLBAR - A LEVER TO MOVE THE CONTENT */
+            scrollbar-width: thin;
+            scrollbar-color: #8B4513 #F5DEB3;
+        }
+        
+        /* WEBKIT SCROLLBAR - FOR THE CHROME FORGEMASTERS */
+        .scrollbox::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .scrollbox::-webkit-scrollbar-track {
+            background: #F5DEB3;
+            border: 1px solid #8B4513;
+        }
+        
+        .scrollbox::-webkit-scrollbar-thumb {
+            background-color: #8B4513;
+            border-radius: 0;
+            border: 1px solid #F5DEB3;
+        }
+        
+        /* THE SECTIONS - EACH A SHIELD OF INFORMATION */
+        .section {
+            margin-bottom: 10px;
+            border: 1px solid #A0522D;
+            padding: 5px;
+            background-color: rgba(245, 222, 179, 0.7);
+            font-size: 12px;
+        }
+        
+        /* THE SECTION TITLES - ENGRAVED WITH CARE */
+        .section-title {
+            font-weight: bold;
+            text-decoration: none;
+            color: #5C2C03;
+            margin-bottom: 5px;
+            font-size: 14px;
+            border-bottom: 1px solid #A0522D;
+            padding-bottom: 3px;
+            letter-spacing: 1px;
+        }
+        
+        /* THE SEAL STAMPS */
+        .sticker {
+            position: absolute;
+            z-index: 10;
+            transform: rotate(10deg);
+            filter: sepia(0.7) saturate(1.3);
+            box-shadow: 0 0 5px rgba(92, 44, 3, 0.7);
+            border: 1px solid #A0522D;
+            border-radius: 50%;
+        }
+        
+        /* FLOATING PARCHMENT SCRAPS */
+        .floating-image {
+            position: fixed;
+            opacity: 0.6;
+            pointer-events: none;
+            filter: sepia(0.7) contrast(1.1);
+            z-index: -1;
+        }
+        
+        /* THE IRON LINKS */
+        a {
+            color: #8B4513;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: bold;
+        }
+        
+        a:hover {
+            color: #A0522D;
+            text-shadow: 0 0 2px #A0522D;
+        }
+        
+        /* VISITOR TALLY - THE LEDGER */
+        .counter {
+            font-family: serif;
+            font-size: 12px;
+            color: #8B4513;
+            margin-top: 5px;
+            text-align: center;
+            border: 1px solid #A0522D;
+            padding: 2px;
+            background-color: #F5DEB3;
+            font-weight: bold;
+        }
+        
+        /* ILLUMINATED DROP CAPS */
+        .illuminated {
+            font-size: 24px;
+            color: #A0522D;
+            text-shadow: 1px 1px 1px #000000;
+            float: left;
+            margin-right: 3px;
+            font-weight: bold;
+            line-height: 1;
+        }
+        
+        /* THE GLOWING TEXT - LIKE METAL IN THE FORGE */
+        .blink {
+            animation: pulsing 3s infinite;
+        }
+        
+        @keyframes pulsing {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+        
+        /* THE GUESTBOOK - WHERE VISITORS MARK THEIR PRESENCE */
+        .guestbook {
+            border: 1px dashed #A0522D;
+            margin-top: 10px;
+            padding: 3px;
+            text-align: center;
+            font-size: 10px;
+        }
+        
+        /* EMBLEM DECORATIONS - LIKE INLAID METAL */
+        .emblem {
+            color: #A0522D;
+            font-size: 16px;
+            display: inline-block;
+            margin: 0 3px;
+        }
+        
+        /* FOOTER - THE FOUNDRY MARK */
+        #footer {
+            text-align: center;
+            padding: 5px;
+            border-top: 2px solid #A0522D;
+            font-size: 8px;
+            background-color: #CD853F;
+            color: #5C2C03;
+        }
+        
+        /* CHARACTER FRAME */
+        .character-frame {
+            border: 2px solid #A0522D;
+            padding: 3px;
+            background-color: rgba(205, 133, 63, 0.2);
+        }
+        
+        /* THE BACKGROUND REALM */
+        #floating-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- FLOATING PARCHMENT SCRAPS - DRIFTING THROUGH THE CHAMBER -->
+    <div id="floating-container"></div>
+    
+    <!-- THE PARCHMENT SCROLL -->
+    <div id="wrapper">
+        <!-- THE HEADER PLATE -->
+        <div id="header">
+            <span class="emblem">⚔</span> CHARACTER CHRONICLE <span class="emblem">⚔</span>
+        </div>
+        
+        <!-- THE SCROLLING HERALD -->
+        <marquee scrollamount="2" behavior="scroll" direction="left">
+            ⚔ FORGED IN THE FIRES OF IMAGINATION ⚔ ~ CHRONICLE IN PROGRESS ~ ⚔ BEST VIEWED BY TORCHLIGHT ⚔
+        </marquee>
+        
+        <!-- THE STURDY TABLE -->
+        <table>
+            <tr>
+                <!-- LEFT COLUMN - THE CHARACTER ESSENCE -->
+                <td class="left-column">
+                    <!-- CHARACTER INFO SECTION -->
+                    <div class="section">
+                        <div class="section-title">IDENTITY & LINEAGE</div>
+                        <div style="text-align: center; margin: 5px 0;">
+                            <img src="/api/placeholder/100/100" alt="Character Portrait" class="character-frame"/>
+                        </div>
+                        <p>
+                            <b>NAME:</b> [NAME]<br>
+                            <b>AGE:</b> [AGE]<br>
+                            <b>LINEAGE:</b> [SPECIES]<br>
+                            <b>REALM:</b> [REALM]<br>
+                            <b>CALLING:</b> [CLASS]
+                        </p>
+                    </div>
+                    
+                    <!-- LIKES/DISLIKES SECTION -->
+                    <div class="section">
+                        <div class="section-title">DESIRES & AVERSIONS</div>
+                        <p>
+                            <span style="color: #8B4513;">❧</span> [DESIRE 1]<br>
+                            <span style="color: #8B4513;">❧</span> [DESIRE 2]<br>
+                            <span style="color: #8B4513;">❧</span> [DESIRE 3]<br>
+                            <br>
+                            <span style="color: #8B0000;">✠</span> [AVERSION 1]<br>
+                            <span style="color: #8B0000;">✠</span> [AVERSION 2]<br>
+                        </p>
+                    </div>
+                    
+                    <!-- THE VISITOR TALLY -->
+                    <div class="counter">
+                        VISITORS TO THIS CHRONICLE: DCCXLII
+                    </div>
+                </td>
+                
+                <!-- RIGHT COLUMN - THE CHARACTER LORE -->
+                <td class="right-column">
+                    <!-- BIO/LORE SECTION WITH SCROLLBOX -->
+                    <div class="section">
+                        <div class="section-title">SAGA & LEGENDS</div>
+                        <div class="scrollbox">
+                            <p>
+                                <span class="illuminated">I</span>n the days when [ERA DETAILS], there emerged a [CHARACTER DESCRIPTOR] known to many as [NAME]. 
+                                [YOUR CHARACTER STORY HERE]
+                            </p>
+                            <p>
+                                <span class="illuminated">M</span>any trials were overcome, as [NAME] journeyed through [REALM DETAILS]. 
+                                [CONTINUE CHARACTER JOURNEY]
+                            </p>
+                            <p>
+                                <span class="illuminated">T</span>he scrolls speak of [CHARACTER LEGENDS]. 
+                                [ADDITIONAL CHARACTER LORE]
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- ABILITIES SECTION WITH SCROLLBOX -->
+                    <div class="section">
+                        <div class="section-title">PROWESS & TALENTS</div>
+                        <div class="scrollbox">
+                            <ul>
+                                <li><b>[SKILL 1]:</b> [Description]</li>
+                                <li><b>[SKILL 2]:</b> [Description]</li>
+                                <li><b>[TALENT 1]:</b> [Description]</li>
+                                <li><b>[TALENT 2]:</b> [Description]</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- RELATIONSHIPS SECTION -->
+                    <div class="section">
+                        <div class="section-title">COMPANIONS & RIVALS</div>
+                        <div class="scrollbox">
+                            <p>
+                                <b>[CHARACTER 1]:</b> [Relationship]<br>
+                                <b>[CHARACTER 2]:</b> [Relationship]<br>
+                                <b>[CHARACTER 3]:</b> [Relationship]
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- GUESTBOOK - THE REGISTER -->
+                    <div class="guestbook">
+                        <a href="#">-=[ INSCRIBE THY NAME ]=-</a> | 
+                        <a href="#">-=[ VIEW THE INSCRIPTIONS ]=-</a>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        
+        <!-- FOOTER - THE FOUNDRY MARK -->
+        <div id="footer">
+            <div>Crafted in the Year of Our Lord MMXXIV - By the Hand of [SCRIBE NAME]</div>
+            <div><a href="#">RETURN TO TOP</a> | <a href="#">BACK TO THE REALM</a> | <a href="#">ALLIED KINGDOMS</a></div>
+            <div class="blink"><span class="emblem">✠</span> THIS SCROLL IS BEST VIEWED NEAR A ROARING HEARTH <span class="emblem">✠</span></div>
+        </div>
+    </div>
+    
+    <!-- THE MASTER CRAFTSMAN'S SCRIPT -->
+    <script>
+        // THE ANIMATION BEGINS - EACH VARIABLE A TOOL IN THE FORGE
+        
+        // CRAFTING THE WAX SEALS - MATERIALS GATHERED
+        const stickerImages = [
+            "https://files.catbox.moe/fohi39.gif",
+            "https://files.catbox.moe/brtbbn.png",
+            "https://files.catbox.moe/2uoul8.gif",
+            "https://files.catbox.moe/zs5lxo.gif",
+            "https://files.catbox.moe/8wqrq0.png"
+        ];
+        
+        // POSITIONING THE SEALS - THE BLUEPRINT
+        const stickerPositions = [
+            { top: '100px', left: '80px', rotate: '-12deg' },
+            { top: '250px', right: '100px', rotate: '15deg' },
+            { bottom: '180px', left: '150px', rotate: '7deg' },
+            { bottom: '250px', right: '200px', rotate: '-10deg' },
+            { top: '400px', left: '250px', rotate: '9deg' }
+        ];
+        
+        // FORGING EACH SEAL - THE HAMMER FALLS
+        for (let i = 0; i < stickerPositions.length; i++) {
+            const sticker = document.createElement('img');
+            sticker.src = stickerImages[i % stickerImages.length];
+            sticker.alt = 'Seal';
+            sticker.className = 'sticker';
+            
+            // SET EACH SEAL IN ITS PLACE - PRECISION METALWORK
+            const pos = stickerPositions[i];
+            for (const prop in pos) {
+                if (prop !== 'rotate') {
+                    sticker.style[prop] = pos[prop];
+                }
+            }
+            
+            // THE ANGLE OF THE HAMMER - ROTATION SET
+            if (pos.rotate) {
+                sticker.style.transform = `rotate(${pos.rotate})`;
+            }
+            
+            // MOUNT THE SEAL TO THE DOCUMENT - THE WORK IS DONE
+            document.body.appendChild(sticker);
+        }
+        
+        // THE FLOATING FRAGMENTS - LIKE SPARKS FROM THE ANVIL
+        const floatContainer = document.getElementById('floating-container');
+        const numFloaters = 25; // NUMBER OF FRAGMENTS - LIKE METAL FILINGS
+        
+        // CRAFTING EACH FLOATING PIECE - SHAPING THE RAW MATERIAL
+        for (let i = 0; i < numFloaters; i++) {
+            const floater = document.createElement('img');
+            floater.src = `/api/placeholder/${20 + Math.floor(Math.random() * 40)}/${20 + Math.floor(Math.random() * 40)}`;
+            floater.alt = 'Floating';
+            floater.className = 'floating-image';
+            
+            // INITIAL POSITION - WHERE THE METAL FIRST FALLS
+            floater.style.top = `${Math.random() * 100}vh`;
+            floater.style.left = `${Math.random() * 100}vw`;
+            
+            // MOVEMENT SPEED - HOW QUICKLY IT TRAVERSES THE FORGE
+            const speed = 0.2 + Math.random() * 0.8;
+            floater.dataset.speed = speed;
+            floater.dataset.direction = Math.random() > 0.5 ? 'right' : 'left';
+            
+            // ADD TO THE CHAMBER - THE PIECE JOINS THE WHOLE
+            floatContainer.appendChild(floater);
+        }
+        
+        // THE ANIMATION FUNCTION - THE BELLOWS THAT KEEP THE FORGE ALIVE
+        function animateFloaters() {
+            const floaters = document.querySelectorAll('.floating-image');
+            
+            // MOVE EACH FRAGMENT - LIKE METAL IN THE CRUCIBLE
+            floaters.forEach(floater => {
+                const speed = parseFloat(floater.dataset.speed);
+                const direction = floater.dataset.direction;
+                
+                // CURRENT POSITION - WHERE THE METAL LIES
+                let left = parseFloat(floater.style.left);
+                
+                // MOVE THE FRAGMENT - THE METAL FLOWS
+                if (direction === 'right') {
+                    left += speed;
+                    if (left > 110) {
+                        left = -10; // RECYCLED INTO THE FORGE
+                    }
+                } else {
+                    left -= speed;
+                    if (left < -10) {
+                        left = 110; // RETURNED TO THE FIRE
+                    }
+                }
+                
+                // SET NEW POSITION - THE METAL FINDS ITS PLACE
+                floater.style.left = `${left}vw`;
+            });
+            
+            // CONTINUE THE CYCLE - THE FORGE NEVER COOLS
+            requestAnimationFrame(animateFloaters);
+        }
+        
+        // BEGIN THE ANIMATION - LIGHT THE FORGE
+        animateFloaters();
+        
+        // THE BLACKSMITH'S NOTES - RECORDED FOR APPRENTICES
+        
+        /*
+         * THE MASTER CRAFTSMAN'S JOURNAL: 
+         * 
+         * This parchment template has been forged with the colors of earth and fire:
+         * - The browns of tempered leather (#8B4513)
+         * - The amber glow of the forge (#CD853F) 
+         * - The tans of aged parchment (#F5DEB3)
+         * - The deep brown of burnished wood (#5C2C03)
+         * 
+         * Each element is precisely crafted:
+         * - The floating elements drift like embers from a forge
+         * - The seals appear as wax stamps pressed into parchment
+         * - The scrollboxes contain the lore like scrolls in a scribe's library
+         * - The illuminated letters (drop caps) begin each paragraph, as in ancient manuscripts
+         * 
+         * The language has been reforged to suit medieval sensibilities:
+         * - "Likes/Dislikes" became "Desires & Aversions"
+         * - "Bio" became "Saga & Legends"
+         * - "Abilities" became "Prowess & Talents"
+         * - "Relationships" became "Companions & Rivals"
+         * 
+         * TO TEMPER THIS CREATION TO YOUR NEEDS:
+         * 1. Replace placeholder images with character portraits and seals
+         * 2. Fill in all the [BRACKETED TEXT] with your character details
+         * 3. Adjust decorative symbols (❧, ✠, ⚔) to match your character's theme
+         * 4. Change colors if needed by adjusting the hex codes in the style section
+         */
+    </script>
+</body>
+</html>
